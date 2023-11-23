@@ -1,13 +1,16 @@
-import { Link, NavLink } from "react-router-dom";
+
+import { NavLink } from 'react-router-dom';
+import logo from '../../assets/images/kh-ecommerce logo.jpg'
+import user from '../../assets/images/user photo.png'
 
 const Navbar = () => {
    const navLinks = <>
-         <li><NavLink to='/'>Home</NavLink></li>
-         <li><NavLink to='/addJob'>Add Job</NavLink></li>
-         <li><NavLink to='/myPostedJob'>My Posted Jobs</NavLink></li>
-         <li><NavLink to='/myBids'>My Bids</NavLink></li>
-         <li><NavLink to='/bidRequets'>Bid Requests</NavLink></li>
-         <li><NavLink to='/login'>Login</NavLink></li>
+      <li><NavLink to='/'>Home</NavLink></li>
+      <li><NavLink to='/addJob'>Add Job</NavLink></li>
+      <li><NavLink to='/myPostedJob'>My Posted Jobs</NavLink></li>
+      <li><NavLink to='/myBids'>My Bids</NavLink></li>
+      <li><NavLink to='/bidRequets'>Bid Requests</NavLink></li>
+      <li><NavLink to='/login'>Login</NavLink></li>
    </>
    return (
       <div>
@@ -21,7 +24,7 @@ const Navbar = () => {
                      {navLinks}
                   </ul>
                </div>
-               <Link to='/' className="btn btn-ghost text-xl">KH Ecommerce</Link>
+               <a className="flex items-center btn btn-ghost text-xl py-1"><img className="h-7 w-7" src={logo} alt="KH Ecommerce Logo" /><span className="font-bold text-orange-500">KH</span> Ecommerce</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                <ul className="menu menu-horizontal px-1">
@@ -29,7 +32,7 @@ const Navbar = () => {
                </ul>
             </div>
             <div className="navbar-end">
-               <a className="btn">Button</a>
+               <a className="btn"><img className='w-7' src={user} alt="user photo" /></a>
             </div>
          </div>
       </div>

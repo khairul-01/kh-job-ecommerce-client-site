@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Registration = () => {
    const { userRegister } = useContext(AuthContext);
@@ -14,13 +15,37 @@ const Registration = () => {
       const photoUrl = form.photoUrl.value;
       console.log(name, email, password, photoUrl);
 
-      userRegister(email, password)
-         .then(result => {
-            console.log(result.user)
+      if (password.lenght < 6) {
+         Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Your password should be at least six character!',
          })
-         .catch(error => {
-            console.error(error);
+      }
+      else if (!/[A-Z]/.test(password)) {
+         Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Your password should have an uppercase character!',
          })
+      }
+      else if (!/[!#$%^&*()_+{}:;<>.?~]/.test(password)) {
+         Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Your password should have a special character!',
+         })
+      }
+
+      else {
+         userRegister(email, password)
+            .then(result => {
+               console.log(result.user)
+            })
+            .catch(error => {
+               console.error(error);
+            })
+      }
    }
    return (
       <div>
@@ -28,9 +53,8 @@ const Registration = () => {
             <div className="hero-content flex-col">
                <div className="text-center">
                   <h1 className="text-5xl font-bold">Register now!</h1>
-
                </div>
-               <div className="card  w-full max-w-sm shadow-2xl bg-base-100">
+               <div className="card w-full max-w-sm shadow-2xl bg-base-100">
                   <form onSubmit={handleRegistration} className="card-body">
                      <div className="form-control">
                         <label className="label">

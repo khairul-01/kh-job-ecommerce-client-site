@@ -7,9 +7,9 @@ const Navbar = () => {
    const navLinks = <>
       <li><NavLink to='/'>Home</NavLink></li>
       <li><NavLink to='/addJob'>Add Job</NavLink></li>
-      <li><NavLink to='/myPostedJob'>My Posted Jobs</NavLink></li>
+      {/* <li><NavLink to='/myPostedJob'>My Posted Jobs</NavLink></li>
       <li><NavLink to='/myBids'>My Bids</NavLink></li>
-      <li><NavLink to='/bidRequets'>Bid Requests</NavLink></li>
+      <li><NavLink to='/bidRequets'>Bid Requests</NavLink></li> */}
       <li><NavLink to='/login'>Login</NavLink></li>
    </>
    return (
@@ -32,7 +32,7 @@ const Navbar = () => {
                </ul>
             </div>
             <div className="navbar-end">
-               <a className="btn"><img className='w-7' src={user} alt="user photo" /></a>
+               <a className="btn"><img className='h-5' src={user} alt="user photo" /></a>
             </div>
          </div>
       </div>

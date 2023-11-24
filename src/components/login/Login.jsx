@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
@@ -18,6 +19,11 @@ const Login = () => {
          })
          .catch(error => {
             console.error(error);
+            Swal.fire({
+               icon: 'error',
+               title: 'Oops...',
+               text: 'Your password or email does not matched!',
+            })
          })
    }
    return (
@@ -28,7 +34,7 @@ const Login = () => {
                   <h1 className="text-5xl font-bold">Login now!</h1>
 
                </div>
-               <div className="card  w-full max-w-sm shadow-2xl bg-base-100">
+               <div className="card w-full max-w-sm shadow-2xl bg-base-100">
                   <form onSubmit={handleLogin} className="card-body">
                      <div className="form-control">
                         <label className="label">

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const JobDetails = () => {
@@ -12,19 +13,19 @@ const JobDetails = () => {
                   <form className="card-body">
                      <div className="form-control">
                         <label className="label">
-                           <span className="label-text">Price</span>
+                           <span className="label-text">Email of the employer</span>
                         </label>
-                        <input type="text" name="name" placeholder="Name" className="input input-bordered" />
+                        <input type="email" name="name" placeholder="Name" className="input input-bordered" />
                      </div>
                      <div className="form-control">
                         <label className="label">
-                           <span className="label-text">Deadline</span>
+                           <span className="label-text">Job Title</span>
                         </label>
                         <input type="text" name="email" placeholder="email" className="input input-bordered" required />
                      </div>
                      <div className="form-control">
                         <label className="label">
-                           <span className="label-text">Email</span>
+                           <span className="label-text">Deadline</span>
                         </label>
                         <input type="email" name="password" placeholder="password" className="input input-bordered" required />
                      </div>

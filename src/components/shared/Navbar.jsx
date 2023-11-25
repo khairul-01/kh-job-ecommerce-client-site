@@ -32,7 +32,7 @@ const Navbar = () => {
                </ul>
             </div>
             <div className="navbar-end">
-               <a className="btn"><img className='h-5' src={user} alt="user photo" /></a>
+               <a className="btn"><img className='w-7' src={user} alt="user photo" /></a>
             </div>
          </div>
          {/* <div className="navbar bg-base-100">

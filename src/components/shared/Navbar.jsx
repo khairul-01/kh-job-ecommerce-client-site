@@ -1,16 +1,31 @@
 
 import { NavLink } from 'react-router-dom';
 import logo from '../../assets/images/kh-ecommerce logo.jpg'
-import user from '../../assets/images/user photo.png'
+import userPic from '../../assets/images/user photo.png'
+import { useContext } from 'react';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Navbar = () => {
+   const {user, userLogout } = useContext(AuthContext);
+   const handleSignOut = () => {
+      userLogout()
+      .then(()=>[
+         console.log('User loggedout successfully')
+      ])
+      .catch(error => {
+         console.error(error);
+      })
+   } 
    const navLinks = <>
       <li><NavLink to='/'>Home</NavLink></li>
       <li><NavLink to='/addJob'>Add Job</NavLink></li>
-      {/* <li><NavLink to='/myPostedJob'>My Posted Jobs</NavLink></li>
+      <li><NavLink to='/myPostedJob'>My Posted Jobs</NavLink></li>
       <li><NavLink to='/myBids'>My Bids</NavLink></li>
-      <li><NavLink to='/bidRequets'>Bid Requests</NavLink></li> */}
-      <li><NavLink to='/login'>Login</NavLink></li>
+      <li><NavLink to='/bidRequets'>Bid Requests</NavLink></li>
+      {
+         !user && <li><NavLink to='/login'>Login</NavLink></li>
+      }
+      
    </>
    return (
       <div>
@@ -32,48 +47,18 @@ const Navbar = () => {
                </ul>
             </div>
             <div className="navbar-end">
-               <a className="btn"><img className='w-7' src={user} alt="user photo" /></a>
+               {
+                  user ? <div className='flex items-center gap-1'>
+                     <a className="btn">{user?.displayName? user.displayName :user.email}</a>
+                     <a className="btn"><img className='w-7' src={user.photoURL} alt="user photo" /></a>
+                     <a onClick={handleSignOut} className="btn">Sign Out</a>
+                  </div>
+                  :
+                  <a className="btn"><img className='w-7' src={userPic} alt="user photo" /></a>
+               }
+               
             </div>
          </div>
-         {/* <div className="navbar bg-base-100">
-            <div className="navbar-start">
-               <div className="dropdown">
-                  <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                  </label>
-                  <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                     <li><a>Item 1</a></li>
-                     <li>
-                        <a>Parent</a>
-                        <ul className="p-2">
-                           <li><a>Submenu 1</a></li>
-                           <li><a>Submenu 2</a></li>
-                        </ul>
-                     </li>
-                     <li><a>Item 3</a></li>
-                  </ul>
-               </div>
-               <a className="btn btn-ghost text-xl">daisyUI</a>
-            </div>
-            <div className="navbar-center hidden lg:flex">
-               <ul className="menu menu-horizontal px-1">
-                  <li><a>Item 1</a></li>
-                  <li tabIndex={0}>
-                     <details>
-                        <summary>Parent</summary>
-                        <ul className="p-2">
-                           <li><a>Submenu 1</a></li>
-                           <li><a>Submenu 2</a></li>
-                        </ul>
-                     </details>
-                  </li>
-                  <li><a>Item 3</a></li>
-               </ul>
-            </div>
-            <div className="navbar-end">
-               <a className="btn">Button</a>
-            </div>
-         </div> */}
       </div>
    );
 };

@@ -1,10 +1,17 @@
+import { useLoaderData } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import JobCategoryCard from './JobCategoryCard';
 
 const BrowseByCategory = () => {
+   const jobs = useLoaderData();
+   const webJobs = jobs.filter(job => job.category === "Web Development")
+   const dmJobs = jobs.filter(job => job.category === "Digital Marketing")
+   const gsJobs = jobs.filter(job => job.category === "Graphics Design")
+
    return (
-      <div>
-         <h1 className='text-center text text-5xl text-blue-600 my-9'>Browse By Category</h1>
+      <div className='my-12'>
+  
          <Tabs>
             <TabList>
                <Tab>Web Development</Tab>
@@ -13,14 +20,28 @@ const BrowseByCategory = () => {
             </TabList>
 
             <TabPanel>
-               <h2 className='my-9 text-3xl'>Any content 1</h2>
-               <h2 className='my-9 text-3xl'>Any content 1</h2>
-               <h2 className='my-9 text-3xl'>Any content 1</h2>
-               <h2 className='my-9 text-3xl'>Any content 1</h2>
-               <h2 className='my-9 text-3xl'>Any content 1</h2>
+
+               <div className='grid grid-cols-2 gap-5'>
+                  {
+                     webJobs.map(job => <JobCategoryCard key={job._id} job={job}></JobCategoryCard>)
+                  }
+               </div>
             </TabPanel>
             <TabPanel>
-               <h2>Any content 2</h2>
+  
+               <div className='grid grid-cols-2 gap-5'>
+                  {
+                     dmJobs.map(job => <JobCategoryCard key={job._id} job={job}></JobCategoryCard>)
+                  }
+               </div>
+            </TabPanel>
+            <TabPanel>
+
+               <div className='grid grid-cols-2 gap-5'>
+                  {
+                     gsJobs.map(job => <JobCategoryCard key={job._id} job={job}></JobCategoryCard>)
+                  }
+               </div>
             </TabPanel>
          </Tabs>
       </div>

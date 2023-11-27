@@ -5,7 +5,16 @@ import Swal from "sweetalert2";
 
 
 const Login = () => {
-   const { userLogin } = useContext(AuthContext);
+   const { userLogin, googleLogin } = useContext(AuthContext);
+   const handleGoogleLogin = () => {
+      googleLogin()
+      .then(result => {
+         console.log('Successfully signed with google', result.user)
+      })
+      .catch(error => {
+         console.log('google login error', error);
+      })
+   }
    const handleLogin = event => {
       event.preventDefault();
       const form = event.target;
@@ -55,7 +64,7 @@ const Login = () => {
                         <button className="btn btn-primary">Login</button>
                      </div>
                   </form>
-                  <p className="px-5 py-3">Login with <span className="btn btn-sm underline">Google</span></p>
+                  <p className="px-5 py-3">Login with <button onClick={handleGoogleLogin} className="btn btn-sm underline">Google</button></p>
                   <p className="px-5 py-3">Are you new here! Please <Link to='/register' className="btn btn-sm underline">Register</Link></p>
                </div>
             </div>

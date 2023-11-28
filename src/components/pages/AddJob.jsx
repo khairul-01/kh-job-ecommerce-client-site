@@ -1,6 +1,11 @@
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 const AddJob = () => {
+   const navigate = useNavigate();
    const handleAddJob = event => {
       event.preventDefault();
       const form = event.target;
@@ -21,6 +26,16 @@ const AddJob = () => {
          maximum_price,
       }
       console.log(jobInfo);
+      axios.post('http://localhost:5000/jobs', jobInfo)
+      .then(res => {
+         console.log(res.data);
+         if(res.data.insertedId){
+            toast.success("Data added successfully !", {
+               position: toast.POSITION.BOTTOM_RIGHT
+             });
+            navigate('/postedJobs')
+         }
+      })
    }
    return (
       <div>
@@ -81,6 +96,7 @@ const AddJob = () => {
                      <div className="form-control mt-6">
                         <button className="btn btn-primary">Add Job</button>
                      </div>
+                     <ToastContainer/>
                   </form>
 
                </div>

@@ -19,11 +19,11 @@ const Navbar = () => {
    const navLinks = <>
       <li><NavLink to='/'>Home</NavLink></li>
       <li><NavLink to='/addJob'>Add Job</NavLink></li>
-      <li><NavLink to='/myPostedJob'>My Posted Jobs</NavLink></li>
+      <li><NavLink to='/postedJobs'>My Posted Jobs</NavLink></li>
       <li><NavLink to='/myBids'>My Bids</NavLink></li>
       <li><NavLink to='/bidRequets'>Bid Requests</NavLink></li>
       {
-         !user && <li><NavLink to='/login'>Login</NavLink></li>
+         !user && <li><NavLink to='/register'>Register/Login</NavLink></li>
       }
       
    </>
@@ -48,7 +48,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                {
-                  user ? <div className='flex items-center gap-1'>
+                  user ? <div className='flex items-center'>
                      <a className="btn">{user?.displayName? user.displayName :user.email}</a>
                      <a className="btn"><img className='w-7' src={user.photoURL} alt="user photo" /></a>
                      <a onClick={handleSignOut} className="btn">Sign Out</a>

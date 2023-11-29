@@ -1,10 +1,13 @@
 import axios from "axios";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../../provider/AuthProvider";
 
 
 const AddJob = () => {
+   const {user} = useContext(AuthContext);
    const navigate = useNavigate();
    const handleAddJob = event => {
       event.preventDefault();
@@ -39,7 +42,7 @@ const AddJob = () => {
    }
    return (
       <div>
-         <div className="hero min-h-screen bg-base-200">
+         <div className="hero min-h-screen bg-base-200 my-5">
             <div className="hero-content flex-col">
                <div className="text-center">
                   <h1 className="text-5xl font-bold">Add Job!</h1>
@@ -50,7 +53,7 @@ const AddJob = () => {
                         <label className="label">
                            <span className="label-text">Email of the employer</span>
                         </label>
-                        <input type="email" name="email" placeholder="Email of the employer" className="input input-bordered" />
+                        <input type="email" name="email" readOnly defaultValue={user.email} className="input input-bordered" />
                      </div>
                      <div className="form-control">
                         <label className="label">

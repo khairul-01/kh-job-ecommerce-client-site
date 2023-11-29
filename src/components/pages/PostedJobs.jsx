@@ -1,11 +1,14 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 const PostedJobs = () => {
 
+   const navigate = useNavigate();
    const { user } = useContext(AuthContext);
    const jobs = useLoaderData();
 
@@ -31,6 +34,7 @@ const PostedJobs = () => {
          maximum_price,
       }
       console.log(jobUpdate);
+
       fetch(`http://localhost:5000/jobs/${id}`, {
          method: 'PUT',
          headers: {
@@ -38,17 +42,54 @@ const PostedJobs = () => {
          },
          body: JSON.stringify(jobUpdate),
       })
-      .then(res => res.json(data => {
+      .then(res => res.json())
+      .then(data => {
          console.log(data);
          if(data.modifiedCount>0){
+            navigate('/postedJobs')
             Swal.fire({
                title: 'Success!',
                text: 'Job information updated successfully',
                icon: 'success',
                confirmButtonText: 'Cool'
             })
+            toast.success("Your posted job updated successfully !", {
+               position: toast.POSITION.TOP_RIGHT
+             });
          }
-      }))
+      })
+   }
+
+   const handleJobDelete = id => {
+      console.log(id);
+      Swal.fire({
+         title: "Are you sure to delete this job?",
+         text: "You won't be able to revert this!",
+         icon: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#3085d6",
+         cancelButtonColor: "#d33",
+         confirmButtonText: "Yes, delete it!"
+       }).then((result) => {
+         if (result.isConfirmed) {
+            fetch(`http://localhost:5000/jobs/${id}`, {
+               method: 'DELETE',
+            })
+            .then(res => res.json())
+            .then(data => {
+               console.log(data);
+               if(data.deletedCount>0){
+                  Swal.fire({
+                     title: "Deleted!",
+                     text: "Your posted job has been deleted.",
+                     icon: "success"
+                  });
+                  navigate('/postedJobs')
+               }
+            })
+         }
+       });
+      
    }
 
    const myJobs = jobs.filter(job => job?.email === user?.email);
@@ -72,13 +113,16 @@ const PostedJobs = () => {
                      <p><span className="font-bold">Prece Range: </span> {job.minimum_price} - {job.maximum_price} </p>
                      <p><span className="font-bold">Short Description: </span> {job.job_description} </p>
                      <div className="card-actions justify-end">
+                        {/* Update button */}
                         <button className="btn btn-secondary" onClick={() => document.getElementById(job._id).showModal()}><div className="badge badge-outline">Update</div></button>
+                        {/* Modal for update job */}
                         <dialog id={job._id} className="modal modal-bottom sm:modal-middle">
                            <div className="modal-box">
                               <form method="dialog">
                                  {/* if there is a button in form, it will close the modal */}
                                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                               </form>
+                              {/* Update form */}
                               <div className="hero min-h-screen bg-base-200">
                                  <div className="hero-content flex-col">
                                     <div className="text-center">
@@ -90,7 +134,7 @@ const PostedJobs = () => {
                                              <label className="label">
                                                 <span className="label-text">Job ID</span>
                                              </label>
-                                             <input type="text" name="id" readOnly value={job._id} className="input input-bordered" />
+                                             <input type="text" name="id" disabled readOnly value={job._id} className="input input-bordered" />
                                           </div>
                                           <div className="form-control">
                                              <label className="label">
@@ -121,7 +165,7 @@ const PostedJobs = () => {
                                                 <span className="label-text">Category</span>
                                              </label>
                                              <select name="category" className="select select-info w-full max-w-xs">
-                                                <option disabled selected>Select Job Category</option>
+                                                <option disabled selected>{job.category}</option>
                                                 <option>Web Development</option>
                                                 <option>Digital Marketing</option>
                                                 <option>Graphics Design</option>
@@ -142,7 +186,7 @@ const PostedJobs = () => {
                                           <div className="form-control mt-6">
                                              <button className="btn btn-primary">Update Job</button>
                                           </div>
-
+                                          
                                        </form>
 
                                     </div>
@@ -150,8 +194,10 @@ const PostedJobs = () => {
                               </div>
                            </div>
                         </dialog>
-                        <button className="btn btn-error"><div className="badge badge-outline">Delete</div></button>
+                        {/* delete button */}
+                        <button className="btn btn-error" onClick={()=>handleJobDelete(job._id)}><div className="badge badge-outline">Delete</div></button>
                      </div>
+                     <ToastContainer/>
                   </div>
                </div>)
             }

@@ -48,9 +48,9 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                {
-                  user ? <div className='flex items-center'>
-                     <a className="btn">{user?.displayName? user.displayName :user.email}</a>
-                     <a className="btn"><img className='w-7' src={user.photoURL} alt="user photo" /></a>
+                  user ? <div className='flex items-center gap-3'>
+                     <a className="">{user?.displayName? user.displayName :user.email}</a>
+                     <a className=""><img className='w-7' src={user.photoURL} alt="user photo" /></a>
                      <a onClick={handleSignOut} className="btn">Sign Out</a>
                   </div>
                   :

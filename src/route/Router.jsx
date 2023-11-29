@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
          {
             path: '/',
             element: <Home></Home>,
-            loader: ()=> fetch('http://localhost:5000/jobs')
+            loader: () => fetch('http://localhost:5000/jobs')
          },
          {
             path: '/addJob',
@@ -26,12 +26,12 @@ export const router = createBrowserRouter([
          {
             path: '/jobs/:id',
             element: <JobDetails></JobDetails>,
-            loader: ({params}) => fetch(`http://localhost:5000/jobs/${params.id}`),
+            loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`),
          },
          {
             path: '/postedJobs',
             element: <PostedJobs></PostedJobs>,
-            loader: ()=> fetch('http://localhost:5000/jobs'),
+            loader: () => fetch('http://localhost:5000/jobs'),
          },
          {
             path: '/login',
@@ -42,5 +42,5 @@ export const router = createBrowserRouter([
             element: <Registration></Registration>,
          }
       ]
-    },
+   },
 ])

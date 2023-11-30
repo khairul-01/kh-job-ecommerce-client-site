@@ -6,7 +6,7 @@ const MyBids = () => {
    const {user} = useContext(AuthContext);
    const bidJobs = useLoaderData();
    console.log(bidJobs);
-   const userBids = bidJobs.filter(bid => bid.userEmail === user.email);
+   const userBids = bidJobs.filter(bid => bid?.userEmail === user?.email);
    return (
       <div className="my-9">
          <h1 className="text-4xl text-center mb-5">Your Bids</h1>

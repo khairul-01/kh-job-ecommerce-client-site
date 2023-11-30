@@ -8,6 +8,7 @@ import AddJob from "../components/pages/AddJob";
 import JobDetails from "../components/pages/JobDetails";
 import PostedJobs from "../components/pages/postedJobs";
 import MyBids from "../components/pages/MyBids";
+import BidRequests from "../components/pages/BidRequests";
 
 export const router = createBrowserRouter([
    {
@@ -37,6 +38,11 @@ export const router = createBrowserRouter([
          {
             path: '/myBids',
             element: <MyBids></MyBids>,
+            loader: () => fetch('http://localhost:5000/bidJobs'),
+         },
+         {
+            path: '/bidRequets',
+            element: <BidRequests></BidRequests>,
             loader: () => fetch('http://localhost:5000/bidJobs'),
          },
          {

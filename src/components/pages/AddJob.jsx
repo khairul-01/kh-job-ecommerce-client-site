@@ -53,7 +53,7 @@ const AddJob = () => {
                         <label className="label">
                            <span className="label-text">Email of the employer</span>
                         </label>
-                        <input type="email" name="email" readOnly defaultValue={user.email} className="input input-bordered" />
+                        <input type="email" name="email" readOnly defaultValue={user?.email} className="input input-bordered" />
                      </div>
                      <div className="form-control">
                         <label className="label">

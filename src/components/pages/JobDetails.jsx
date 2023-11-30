@@ -1,13 +1,52 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 
 const JobDetails = () => {
    const detailsJob = useLoaderData();
    const {job_title, job_description, minimum_price, maximum_price, deadline, email} = detailsJob;
    const {user} = useContext(AuthContext);
+   const navigate = useNavigate();
    
+   const handleBid = event => {
+      event.preventDefault();
+      const form = event.target;
+      const userEmail = form.email.value;
+      const biddingPrice = form.price.value;
+      const deadline = form.deadline.value;
+      const email = form.ownerEmail.value;
+
+      const bidInfo = {
+         job_title,
+         biddingPrice,
+         email,
+         userEmail,
+         deadline
+      }
+      console.log(bidInfo);
+
+      axios.post('http://localhost:5000/bidJobs', bidInfo)
+      .then(res => {
+         console.log(res.data);
+         if(res.data.insertedId){
+            toast.success("Data added successfully !", {
+               position: toast.POSITION.TOP_RIGHT
+             });
+             Swal.fire({
+               title: 'Success!',
+               text: 'Job information updated successfully',
+               icon: 'success',
+               confirmButtonText: 'Cool'
+            })
+            navigate('/myBids')
+         }
+      })
+   }
 
    return (
       <div>
@@ -29,7 +68,7 @@ const JobDetails = () => {
                   <h1 className="text-4xl font-bold">Place Your Bid</h1>
                </div>
                <div className="card w-full max-w-sm shadow-2xl bg-base-100">
-                  <form className="card-body">
+                  <form onSubmit={handleBid} className="card-body">
                      <div className="form-control">
                         <label className="label">
                            <span className="label-text">Price (Your Bidding Amount)</span>
@@ -47,18 +86,18 @@ const JobDetails = () => {
                            <span className="label-text">Email</span>
                         </label>
                         {
-                           user?
+                           user&&
                            <input type="email" name="email" readOnly defaultValue={user.email} placeholder="Email" className="input input-bordered" required />
-                           :
-                           <input type="email" name="email" placeholder="Email" className="input input-bordered" required />
+                           // :
+                           // <input type="email" name="email" placeholder="Email" className="input input-bordered" required />
                         }
                         
                      </div>
                      <div className="form-control">
                         <label className="label">
-                           <span className="label-text">Buyer Email</span>
+                           <span className="label-text">Employer Email</span>
                         </label>         
-                        <input type="email" name="userEmail" readOnly defaultValue={email} placeholder="Email" className="input input-bordered" required />
+                        <input type="email" name="ownerEmail" readOnly defaultValue={email} placeholder="Email" className="input input-bordered" required />
                      </div>
                      <div className="form-control mt-6">
                         {
@@ -69,6 +108,7 @@ const JobDetails = () => {
                         }
                         
                      </div>
+                     <ToastContainer/>
                   </form>
                   
                </div>

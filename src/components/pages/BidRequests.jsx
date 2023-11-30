@@ -1,5 +1,5 @@
 // import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 // import { AuthContext } from "../../provider/AuthProvider";
 
@@ -7,9 +7,10 @@ import Swal from "sweetalert2";
 const BidRequests = () => {
    // const {user} = useContext(AuthContext);
    const jobRequests = useLoaderData();
+   const navigate = useNavigate();
    const handleAccept = (id) => {
       const statusInfo = {
-         status: 'In Progress'
+         status: 'accept'
       }
       console.log(id, statusInfo);
 
@@ -41,7 +42,7 @@ const BidRequests = () => {
                         icon: 'success',
                         confirmButtonText: 'Cool'
                      })
-
+                     navigate('/bidRequets')
                   }
                })
          }
@@ -51,7 +52,7 @@ const BidRequests = () => {
    }
    const handleReject = (id) => {
       const statusInfo = {
-         status: 'Rejected'
+         status: 'reject'
       }
       console.log(id, statusInfo);
 
@@ -83,7 +84,7 @@ const BidRequests = () => {
                         icon: 'success',
                         confirmButtonText: 'Cool'
                      })
-
+                     navigate('/bidRequets')
                   }
                })
          }
@@ -116,7 +117,15 @@ const BidRequests = () => {
                         <td>{bid.job_title}</td>
                         <td>{bid.email}</td>
                         <td>{bid.deadline}</td>
-                        <td>pending</td>
+                        {
+                           bid?.status ?
+                           bid.status === 'accept'?
+                           <td>In Progress</td>
+                           :
+                           <td>Rejected</td>
+                           :
+                           <td>pending</td>
+                        }
                         <td><button onClick={() => handleAccept(bid._id)} className="btn">Accept</button></td>
                         <td><button onClick={() => handleReject(bid._id)} className="btn">Reject</button></td>
                      </tr>)

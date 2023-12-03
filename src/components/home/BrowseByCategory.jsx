@@ -21,7 +21,7 @@ const BrowseByCategory = () => {
 
             <TabPanel>
 
-               <div className='grid grid-cols-2 gap-5'>
+               <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                   {
                      webJobs.map(job => <JobCategoryCard key={job._id} job={job}></JobCategoryCard>)
                   }
@@ -29,7 +29,7 @@ const BrowseByCategory = () => {
             </TabPanel>
             <TabPanel>
   
-               <div className='grid grid-cols-2 gap-5'>
+               <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                   {
                      dmJobs.map(job => <JobCategoryCard key={job._id} job={job}></JobCategoryCard>)
                   }
@@ -37,7 +37,7 @@ const BrowseByCategory = () => {
             </TabPanel>
             <TabPanel>
 
-               <div className='grid grid-cols-2 gap-5'>
+               <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                   {
                      gsJobs.map(job => <JobCategoryCard key={job._id} job={job}></JobCategoryCard>)
                   }

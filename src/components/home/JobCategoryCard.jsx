@@ -5,7 +5,7 @@ const JobCategoryCard = ({job}) => {
    const {_id, job_title, deadline, job_description, minimum_price, maximum_price} = job
    return (
       <div>
-         <div className="card h-72 bg-accent text-accent-content glass">
+         <div className="card min-h-[300px] bg-accent text-accent-content glass">
             <div className="card-body">
                <h2 className="card-title"><span className="font-bold">Job Title: </span> {job_title}</h2>
                <p><span className="font-bold">Deadline: </span> {deadline} </p>

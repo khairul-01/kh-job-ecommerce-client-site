@@ -9,6 +9,7 @@ import JobDetails from "../components/pages/JobDetails";
 import PostedJobs from "../components/pages/postedJobs";
 import MyBids from "../components/pages/MyBids";
 import BidRequests from "../components/pages/BidRequests";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
    {
@@ -23,26 +24,26 @@ export const router = createBrowserRouter([
          },
          {
             path: '/addJob',
-            element: <AddJob></AddJob>
+            element: <PrivateRoute><AddJob></AddJob></PrivateRoute>,
          },
          {
             path: '/jobs/:id',
-            element: <JobDetails></JobDetails>,
+            element: <PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
             loader: ({ params }) => fetch(`http://localhost:5000/jobs/${params.id}`),
          },
          {
             path: '/postedJobs',
-            element: <PostedJobs></PostedJobs>,
+            element: <PrivateRoute><PostedJobs></PostedJobs></PrivateRoute>,
             loader: () => fetch('http://localhost:5000/jobs'),
          },
          {
             path: '/myBids',
-            element: <MyBids></MyBids>,
+            element: <PrivateRoute><MyBids></MyBids></PrivateRoute>,
             loader: () => fetch('http://localhost:5000/bidJobs'),
          },
          {
             path: '/bidRequets',
-            element: <BidRequests></BidRequests>,
+            element: <PrivateRoute><BidRequests></BidRequests></PrivateRoute>,
             loader: () => fetch('http://localhost:5000/bidJobs'),
          },
          {

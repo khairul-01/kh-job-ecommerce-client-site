@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const MyBids = () => {
-   const {user} = useContext(AuthContext);
+   const { user } = useContext(AuthContext);
    const bidJobs = useLoaderData();
    console.log(bidJobs);
    const userBids = bidJobs.filter(bid => bid?.userEmail === user?.email);
@@ -29,13 +29,25 @@ const MyBids = () => {
 
                   {
                      userBids.map((bid, ind) => <tr key={ind} className="hover">
-                     <th>{ind+1}</th>
-                     <td>{bid.job_title}</td>
-                     <td>{bid.email}</td>
-                     <td>{bid.deadline}</td>
-                     <td>pending</td>
-                     <td><button className="btn">Complete</button></td>
-                  </tr>)
+                        <th>{ind + 1}</th>
+                        <td>{bid.job_title}</td>
+                        <td>{bid.email}</td>
+                        <td>{bid.deadline}</td>
+                        <td>
+                           {
+                              bid?.status ? 
+                              (bid.status === 'reject') ? <p>Cancelled</p> : <p>In Progress</p> 
+                              :
+                              <p>Pending</p>
+                           }
+                        </td>
+                        {
+                           bid?.status === 'accept' ?
+                           <td><button className="btn">Complete</button></td>
+                           :
+                           <td><button className="btn" disabled>Complete</button></td>
+                        }
+                     </tr>)
                   }
 
                </tbody>

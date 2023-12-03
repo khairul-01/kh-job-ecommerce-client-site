@@ -31,7 +31,7 @@ const Footer = () => {
 
          </footer>
          <footer className="footer items-center px-10 pb-5 bg-neutral text-neutral-content rounded-b-md">
-            <aside className="items-center grid-flow-col">
+            <aside className="items-center grid-flow-col mt-3">
 
                <p className=''>Copyright © 2023 - All right reserved by <span className="font-bold text-orange-500">KH </span> Ecommerce Ltd.</p>
             </aside>

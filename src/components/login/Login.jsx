@@ -1,15 +1,19 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 
 
 const Login = () => {
    const { userLogin, googleLogin } = useContext(AuthContext);
+   const location = useLocation();
+   const navigate = useNavigate();
+   console.log(location);
    const handleGoogleLogin = () => {
       googleLogin()
       .then(result => {
-         console.log('Successfully signed with google', result.user)
+         console.log('Successfully signed with google', result.user);
+         navigate(location?.state ? location.state : '/');
       })
       .catch(error => {
          console.log('google login error', error);
@@ -24,7 +28,8 @@ const Login = () => {
 
       userLogin(email, password)
          .then(result => {
-            console.log(result.user)
+            console.log('Successfully logged in',result.user)
+            navigate(location?.state ? location.state : '/');
          })
          .catch(error => {
             console.error(error);

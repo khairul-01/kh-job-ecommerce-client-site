@@ -23,7 +23,7 @@ const Navbar = () => {
       <li><NavLink to='/myBids'>My Bids</NavLink></li>
       <li><NavLink to='/bidRequets'>Bid Requests</NavLink></li>
       {
-         !user && <li><NavLink to='/register'>Register/Login</NavLink></li>
+         !user && <li><NavLink to='/register'>Register</NavLink></li>
       }
 
    </>
@@ -54,8 +54,8 @@ const Navbar = () => {
             <div className="navbar-end">
                {
                   user ? <div className='flex items-center gap-3'>
-                     <a className="">{user?.displayName ? user.displayName : user.email}</a>
-                     <a className=""><img className='w-7' src={user.photoURL} alt="user photo" /></a>
+                     <a className="hidden sm:flex">{user?.displayName ? user.displayName : user.email}</a>
+                     <a className="hidden sm:flex"><img className='w-7' src={user.photoURL} alt="user photo" /></a>
                      <a onClick={handleSignOut} className="btn">Sign Out</a>
                   </div>
                      :

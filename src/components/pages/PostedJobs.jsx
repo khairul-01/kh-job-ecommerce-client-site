@@ -110,7 +110,7 @@ const PostedJobs = () => {
                   <div className="card-body">
                      <h2 className="card-title"><span className="font-bold">Job Title: </span> {job.job_title}</h2>
                      <p><span className="font-bold">Deadline: </span> {job.deadline} </p>
-                     <p><span className="font-bold">Prece Range: </span> {job.minimum_price} - {job.maximum_price} </p>
+                     <p><span className="font-bold">Prece Range: </span> {job.minimum_price} - {job.maximum_price} $</p>
                      <p><span className="font-bold">Short Description: </span> {job.job_description} </p>
                      <div className="card-actions justify-end">
                         {/* Update button */}

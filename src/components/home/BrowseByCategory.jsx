@@ -15,6 +15,7 @@ const BrowseByCategory = () => {
 
    return (
       <div className='my-12'>
+         <h1 className='text-center text-5xl font-bold mb-5'>Browse Job by Category</h1>
 
          <Tabs>
             <TabList>

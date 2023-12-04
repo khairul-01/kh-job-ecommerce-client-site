@@ -104,7 +104,7 @@ const BidRequests = () => {
                      <th>Deadline</th>
                      <th>Status</th>
                      <th></th>
-                     <th></th>
+
                   </tr>
                </thead>
                <tbody>
@@ -119,15 +119,24 @@ const BidRequests = () => {
                         <td>{bid.deadline}</td>
                         {
                            bid?.status ?
-                           bid.status === 'accept'?
-                           <td>In Progress</td>
-                           :
-                           <td>Rejected</td>
-                           :
-                           <td>pending</td>
+                              bid.status === 'accept' ?
+                                 <td>In Progress</td>
+                                 :
+                                 <td>Rejected</td>
+                              :
+                              <td>pending</td>
                         }
-                        <td><button onClick={() => handleAccept(bid._id)} className="btn">Accept</button></td>
-                        <td><button onClick={() => handleReject(bid._id)} className="btn">Reject</button></td>
+                        {
+                           (bid?.status === 'accept') ?
+                              <progress className="progress w-56"></progress>
+                              :
+                              bid?.status !== 'reject' &&
+                              <td className="flex gap-3">
+                                 <button onClick={() => handleAccept(bid._id)} className="btn">Accept</button>
+                                 <button onClick={() => handleReject(bid._id)} className="btn">Reject</button>
+                              </td>
+
+                        }
                      </tr>)
                   }
 

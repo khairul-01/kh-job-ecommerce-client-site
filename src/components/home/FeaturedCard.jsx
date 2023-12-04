@@ -10,7 +10,7 @@ const FeaturedCard = ({ job }) => {
             <div className="card-body">
                <h2 className="card-title"><span className="font-bold">Job Title: </span> {job_title}</h2>
                <p><span className="font-bold">Deadline: </span> {deadline} </p>
-               <p><span className="font-bold">Prece Range: </span> {minimum_price} - {maximum_price} </p>
+               <p><span className="font-bold">Prece Range: </span> {minimum_price} - {maximum_price} $</p>
             </div>
             <div className="card-body">
                <p><span className="font-bold">Short Description: </span> {job_description} </p>

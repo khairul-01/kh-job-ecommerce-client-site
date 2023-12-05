@@ -1,4 +1,5 @@
 // import { useContext } from "react";
+import { Helmet } from "react-helmet-async";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 // import { AuthContext } from "../../provider/AuthProvider";
@@ -92,6 +93,9 @@ const BidRequests = () => {
    }
    return (
       <div className="my-9">
+         <Helmet>
+            <title>KH | Bid Requests</title>
+         </Helmet>
          <h1 className="text-4xl text-center mb-5">Bid Requests</h1>
          <div className="overflow-x-auto">
             <table className="table">

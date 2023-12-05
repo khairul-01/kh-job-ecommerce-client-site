@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Navigate, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyBids = () => {
    const { user } = useContext(AuthContext);
@@ -52,6 +53,9 @@ const MyBids = () => {
    }
    return (
       <div className="my-9">
+         <Helmet>
+            <title>KH | My Bids</title>
+         </Helmet>
          <h1 className="text-4xl text-center mb-5">Your Bids</h1>
          <div className="overflow-x-auto">
             <table className="table">

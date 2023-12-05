@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 
 const AddJob = () => {
@@ -42,6 +43,9 @@ const AddJob = () => {
    }
    return (
       <div>
+         <Helmet>
+            <title>Job | Add Job</title>
+         </Helmet>
          <div className="hero min-h-screen bg-base-200 my-5">
             <div className="hero-content flex-col">
                <div className="text-center">

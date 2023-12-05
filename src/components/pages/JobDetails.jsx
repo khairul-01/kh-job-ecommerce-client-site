@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const JobDetails = () => {
@@ -50,6 +51,9 @@ const JobDetails = () => {
 
    return (
       <div>
+         <Helmet>
+            <title>KH | Job Details</title>
+         </Helmet>
          <div className="text-center my-6">
                   <h1 className="text-5xl font-bold">Job Details</h1>
                </div>

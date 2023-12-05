@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -42,6 +43,9 @@ const Login = () => {
    }
    return (
       <div>
+         <Helmet>
+            <title>KH | Login</title>
+         </Helmet>
          <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
                <div className="text-center">

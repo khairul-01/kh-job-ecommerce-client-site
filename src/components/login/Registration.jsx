@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Registration = () => {
    const { userRegister } = useContext(AuthContext);
@@ -49,6 +50,9 @@ const Registration = () => {
    }
    return (
       <div>
+         <Helmet>
+            <title>KH | Registration</title>
+         </Helmet>
          <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
                <div className="text-center">

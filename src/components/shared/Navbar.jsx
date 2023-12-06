@@ -4,9 +4,12 @@ import logo from '../../assets/images/kh-ecommerce logo.jpg'
 import userPic from '../../assets/images/user photo.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
+import { motion } from 'framer-motion';
+
 
 const Navbar = () => {
    const { user, userLogout } = useContext(AuthContext);
+   
    const handleSignOut = () => {
       userLogout()
          .then(() => [
@@ -29,7 +32,16 @@ const Navbar = () => {
    </>
    return (
       <div>
-         <div className="navbar bg-base-100">
+         <motion.nav
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.9 }}
+
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+         >
+            {/* Your Navbar content goes here */}
+            <div className="navbar bg-base-100">
 
             <div className="navbar-start">
                <div className="dropdown">
@@ -74,6 +86,8 @@ const Navbar = () => {
 
             </div>
          </div>
+         </motion.nav>
+         
       </div>
    );
 };

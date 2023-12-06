@@ -5,10 +5,11 @@ import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 
 const AddJob = () => {
-   const {user} = useContext(AuthContext);
+   const { user } = useContext(AuthContext);
    const navigate = useNavigate();
    const handleAddJob = event => {
       event.preventDefault();
@@ -30,16 +31,34 @@ const AddJob = () => {
          maximum_price,
       }
       console.log(jobInfo);
-      axios.post('http://localhost:5000/jobs', jobInfo)
-      .then(res => {
-         console.log(res.data);
-         if(res.data.insertedId){
-            toast.success("Data added successfully !", {
-               position: toast.POSITION.BOTTOM_RIGHT
-             });
-            navigate('/postedJobs')
-         }
-      })
+      const currentDate = new Date();
+      const inputDate = new Date(deadline)
+      if (inputDate > currentDate) {
+         console.log(currentDate, inputDate);
+         Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Your date should be valid or after current date!',
+         });
+      }
+      else {
+         axios.post('http://localhost:5000/jobs', jobInfo)
+            .then(res => {
+               console.log(res.data);
+               if (res.data.insertedId) {
+                  toast.success("Data added successfully !", {
+                     position: toast.POSITION.BOTTOM_RIGHT
+                  });
+                  Swal.fire({
+                     title: 'Success!',
+                     text: 'Data added successfully !',
+                     icon: 'success',
+                     confirmButtonText: 'Cool'
+                  })
+                  navigate('/postedJobs')
+               }
+            })
+      }
    }
    return (
       <div>
@@ -103,7 +122,7 @@ const AddJob = () => {
                      <div className="form-control mt-6">
                         <button className="btn btn-primary">Add Job</button>
                      </div>
-                     <ToastContainer/>
+                     <ToastContainer />
                   </form>
 
                </div>

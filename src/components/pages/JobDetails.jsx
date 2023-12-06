@@ -14,6 +14,9 @@ const JobDetails = () => {
    const {user} = useContext(AuthContext);
    const navigate = useNavigate();
    
+   const currentDate = new Date();
+   const deadlinDate = new Date(deadline);
+
    const handleBid = event => {
       event.preventDefault();
       const form = event.target;
@@ -105,7 +108,7 @@ const JobDetails = () => {
                      </div>
                      <div className="form-control mt-6">
                         {
-                           (user?.email===detailsJob?.email)?
+                           (user?.email===detailsJob?.email || deadlinDate < currentDate )?
                            <button disabled className='btn btn-primary' >Bid On the Project</button>
                            :
                            <button className='btn btn-primary' >Bid On the Project</button>
@@ -114,7 +117,9 @@ const JobDetails = () => {
                      </div>
                      <ToastContainer/>
                   </form>
-                  
+                  {
+                     deadlinDate < currentDate && <p className="text-xl text-orange-700 p-2">The job deadlin has been expired</p>
+                  }
                </div>
             </div>
          </div>

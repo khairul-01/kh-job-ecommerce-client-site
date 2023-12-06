@@ -15,7 +15,14 @@ const OurServices = () => {
       >
          {/* Your Our Services content goes here */}
          <div className="my-11">
-            <h1 className="text-5xl text-center font-bold mb-5">Our Services</h1>
+         <motion.nav
+               whileHover={{ scale: 1.1 }}
+               whileTap={{ scale: 0.9 }}
+            >
+               {/* Framer motion our service */}
+               <h1 className="text-5xl text-center font-bold mb-5">Our Services</h1>
+            </motion.nav>
+            
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
                <div className="card bg-base-100 shadow-xl">
                   <figure className="px-10 pt-10">

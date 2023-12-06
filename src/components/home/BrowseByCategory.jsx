@@ -21,9 +21,15 @@ const BrowseByCategory = () => {
          transition={{ duration: 1 }}
 
       >
-         {/* Your Job Category content goes here */}
+         {/* Job Category content goes here */}
          <div className='my-12'>
-            <h1 className='text-center text-5xl font-bold mb-5'>Browse Job by Category</h1>
+            <motion.nav
+               whileHover={{ scale: 1.1 }}
+               whileTap={{ scale: 0.9 }}
+            >
+               {/* Navbar content goes here */}
+               <h1 className='text-center text-5xl font-bold mb-5'>Browse Job by Category</h1>
+            </motion.nav>
 
             <Tabs>
                <TabList>
@@ -58,7 +64,14 @@ const BrowseByCategory = () => {
                </TabPanel>
             </Tabs>
             <div className='my-11'>
-               <h1 className='font-bold text-5xl text-center my-9'>Featured Jobs</h1>
+               <motion.nav
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+               >
+                  {/* Navbar content goes here */}
+                  <h1 className='font-bold text-5xl text-center my-9'>Featured Jobs</h1>
+               </motion.nav>
+
                <div className='space-y-1'>
                   {
                      featuredJobs.map(job => <FeaturedCard key={job._id} job={job}></FeaturedCard>)

@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 
 const Login = () => {
@@ -31,6 +32,13 @@ const Login = () => {
          .then(result => {
             console.log('Successfully logged in',result.user)
             navigate(location?.state ? location.state : '/');
+            const jobUser = {email};
+            // Get access token
+            axios.post('',jobUser,{withCredentials: true})
+            .then(res=>{
+               console.log(res.data)
+            })
+
          })
          .catch(error => {
             console.error(error);

@@ -8,8 +8,9 @@ const JobCategoryCard = ({ job }) => {
          <motion.div
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            transition={{ duration: 1 }}
          >
-            {/* Your Job Category content goes here */}
+            {/* Job Category content goes here */}
             <div className="card min-h-[300px] bg-accent text-accent-content glass">
             <div className="card-body">
                <h2 className="card-title"><span className="font-bold">Job Title: </span> {job_title}</h2>

@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 
 const Registration = () => {
    const { userRegister } = useContext(AuthContext);
+   const navigate = useNavigate();
 
    const handleRegistration = (event) => {
       event.preventDefault();
@@ -41,7 +42,8 @@ const Registration = () => {
       else {
          userRegister(email, password)
             .then(result => {
-               console.log(result.user)
+               console.log(result.user);
+               navigate('/');
             })
             .catch(error => {
                console.error(error);

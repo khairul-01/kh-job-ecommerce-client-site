@@ -15,7 +15,7 @@ const Banner = () => {
          whileTap={{ scale: 0.9 }}
 
       >
-         {/* Your Banner content goes here */}
+         {/* Banner content */}
          <div className="carousel w-full mt-3">
 
             <div id="slide1" className="carousel-item relative w-full">

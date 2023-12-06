@@ -9,8 +9,9 @@ const FeaturedCard = ({ job }) => {
          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.9 }}
+            transition={{ duration: 1 }}
          >
-            {/* Your Featured Jobs content goes here */}
+            {/* Featured Jobs content goes here */}
             <div className="card bg-primary text-primary-content glass">
                <div className="grid grid-cols-3 items-center">
                   <div className="card-body">

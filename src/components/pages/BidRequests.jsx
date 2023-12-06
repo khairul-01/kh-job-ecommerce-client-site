@@ -2,12 +2,14 @@
 import { Helmet } from "react-helmet-async";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-// import { AuthContext } from "../../provider/AuthProvider";
+import { AuthContext } from "../../provider/AuthProvider";
+import { useContext } from "react";
 
 
 const BidRequests = () => {
-   // const {user} = useContext(AuthContext);
-   const jobRequests = useLoaderData();
+   const {user} = useContext(AuthContext);
+   const jobRequestsData = useLoaderData();
+   const jobRequests = jobRequestsData.filter(bid => bid?.email === user?.email);
    const navigate = useNavigate();
    const handleAccept = (id) => {
       const statusInfo = {

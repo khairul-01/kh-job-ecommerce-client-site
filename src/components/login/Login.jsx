@@ -3,8 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
-import axios from "axios";
-
+// import axios from "axios";
 
 const Login = () => {
    const { userLogin, googleLogin } = useContext(AuthContext);
@@ -13,13 +12,13 @@ const Login = () => {
    console.log(location);
    const handleGoogleLogin = () => {
       googleLogin()
-      .then(result => {
-         console.log('Successfully signed with google', result.user);
-         navigate(location?.state ? location.state : '/');
-      })
-      .catch(error => {
-         console.log('google login error', error);
-      })
+         .then(result => {
+            console.log('Successfully signed with google', result.user);
+            navigate(location?.state ? location.state : '/');
+         })
+         .catch(error => {
+            console.log('google login error', error);
+         })
    }
    const handleLogin = event => {
       event.preventDefault();
@@ -30,14 +29,15 @@ const Login = () => {
 
       userLogin(email, password)
          .then(result => {
-            console.log('Successfully logged in',result.user)
+            console.log('Successfully logged in', result.user);
             navigate(location?.state ? location.state : '/');
-            const jobUser = {email};
+            const jobUser = { email };
+            console.log(jobUser);
             // Get access token
-            axios.post('',jobUser,{withCredentials: true})
-            .then(res=>{
-               console.log(res.data)
-            })
+            // axios.post('https://assignment-eleven-server-theta.vercel.app/login', jobUser)
+            // .then(res => {
+            //    console.log(res.data)
+            // })
 
          })
          .catch(error => {

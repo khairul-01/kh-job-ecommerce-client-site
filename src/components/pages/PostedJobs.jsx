@@ -36,7 +36,7 @@ const PostedJobs = () => {
       }
       console.log(jobUpdate);
 
-      fetch(`http://localhost:5000/jobs/${id}`, {
+      fetch(`https://assignment-eleven-server-theta.vercel.app/jobs/${id}`, {
          method: 'PUT',
          headers: {
             'content-type': 'application/json'
@@ -73,7 +73,7 @@ const PostedJobs = () => {
          confirmButtonText: "Yes, delete it!"
       }).then((result) => {
          if (result.isConfirmed) {
-            fetch(`http://localhost:5000/jobs/${id}`, {
+            fetch(`https://assignment-eleven-server-theta.vercel.app/jobs/${id}`, {
                method: 'DELETE',
             })
                .then(res => res.json())

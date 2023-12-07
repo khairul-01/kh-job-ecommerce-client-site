@@ -1,12 +1,12 @@
-import { useLoaderData } from 'react-router-dom';
+
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import JobCategoryCard from './JobCategoryCard';
 import FeaturedCard from './FeaturedCard';
 import { motion } from 'framer-motion';
 
-const BrowseByCategory = () => {
-   const jobs = useLoaderData();
+const BrowseByCategory = ({jobs}) => {
+   // const jobs = useLoaderData();
    const webJobs = jobs.filter(job => job.category === "Web Development");
    const dmJobs = jobs.filter(job => job.category === "Digital Marketing");
    const gsJobs = jobs.filter(job => job.category === "Graphics Design");
@@ -42,7 +42,7 @@ const BrowseByCategory = () => {
 
                   <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                      {
-                        webJobs.map(job => <JobCategoryCard key={job._id} job={job}></JobCategoryCard>)
+                        webJobs.map(job => <JobCategoryCard key={job?._id} job={job}></JobCategoryCard>)
                      }
                   </div>
                </TabPanel>
@@ -50,7 +50,7 @@ const BrowseByCategory = () => {
 
                   <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                      {
-                        dmJobs.map(job => <JobCategoryCard key={job._id} job={job}></JobCategoryCard>)
+                        dmJobs.map(job => <JobCategoryCard key={job?._id} job={job}></JobCategoryCard>)
                      }
                   </div>
                </TabPanel>
@@ -58,7 +58,7 @@ const BrowseByCategory = () => {
 
                   <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
                      {
-                        gsJobs.map(job => <JobCategoryCard key={job._id} job={job}></JobCategoryCard>)
+                        gsJobs.map(job => <JobCategoryCard key={job?._id} job={job}></JobCategoryCard>)
                      }
                   </div>
                </TabPanel>
@@ -74,7 +74,7 @@ const BrowseByCategory = () => {
 
                <div className='space-y-1'>
                   {
-                     featuredJobs.map(job => <FeaturedCard key={job._id} job={job}></FeaturedCard>)
+                     featuredJobs.map(job => <FeaturedCard key={job?._id} job={job}></FeaturedCard>)
                   }
                </div>
             </div>

@@ -34,7 +34,7 @@ const JobDetails = () => {
       }
       console.log(bidInfo);
 
-      axios.post('http://localhost:5000/bidJobs', bidInfo)
+      axios.post('https://assignment-eleven-server-theta.vercel.app/bidJobs', bidInfo)
       .then(res => {
          console.log(res.data);
          if(res.data.insertedId){

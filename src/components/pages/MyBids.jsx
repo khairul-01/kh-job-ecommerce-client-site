@@ -25,7 +25,7 @@ const MyBids = () => {
          confirmButtonText: "Yes, complete it!"
       }).then((result) => {
          if (result.isConfirmed) {
-            fetch(`http://localhost:5000/bidJobs/${id}`, {
+            fetch(`https://assignment-eleven-server-theta.vercel.app/bidJobs/${id}`, {
                method: 'PUT',
                headers: {
                   'content-type': 'application/json',
@@ -50,6 +50,14 @@ const MyBids = () => {
       })
 
 
+   }
+   if (userBids.length === 0) {
+      return <div className="min-h-screen flex justify-center items-center">
+         <Helmet>
+            <title>KH | My Bids</title>
+         </Helmet>
+         <p className="text-4xl text-center text-error">You did not bid any job yet</p>
+      </div>
    }
    return (
       <div className="my-9">

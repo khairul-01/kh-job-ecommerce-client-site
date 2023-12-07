@@ -27,7 +27,7 @@ const BidRequests = () => {
          confirmButtonText: "Yes, accept it!"
       }).then((result) => {
          if (result.isConfirmed) {
-            fetch(`http://localhost:5000/bidJobs/${id}`, {
+            fetch(`https://assignment-eleven-server-theta.vercel.app/bidJobs/${id}`, {
                method: 'PUT',
                headers: {
                   'content-type': 'application/json',
@@ -69,7 +69,7 @@ const BidRequests = () => {
          confirmButtonText: "Yes, reject it!"
       }).then((result) => {
          if (result.isConfirmed) {
-            fetch(`http://localhost:5000/bidJobs/${id}`, {
+            fetch(`https://assignment-eleven-server-theta.vercel.app/bidJobs/${id}`, {
                method: 'PUT',
                headers: {
                   'content-type': 'application/json',
@@ -92,6 +92,14 @@ const BidRequests = () => {
                })
          }
       })
+   }
+   if (jobRequests.length === 0) {
+      return <div className="min-h-screen flex justify-center items-center">
+         <Helmet>
+            <title>KH | Bid Requests</title>
+         </Helmet>
+         <p className="text-4xl text-center text-error">You do not have any bid request</p>
+      </div>
    }
    return (
       <div className="my-9">
